@@ -1,0 +1,343 @@
+body {
+  background: linear-gradient(#1292b9, #227b96) no-repeat;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* Assure une bonne gestion des bordures */
+  overflow: hidden;
+}
+
+h1 {
+  text-align: center;
+  font-family: "Jomhuria", serif;
+  font-size: 5rem;
+  margin: 0;
+  padding: 0;
+  padding-bottom: 1em;
+}
+
+li {
+  font-family: "Jomhuria", serif;
+  font-size: 2em;
+}
+/* Wrapper appli & grid principal*/
+#todo-app {
+  max-width: 90%;
+  height: 100vh;
+  margin: auto;
+  display: grid;
+  gap: 2em; /* Réduction du gap pour une meilleure disposition */
+  grid-template-columns: 300px 1fr;
+  grid-template-areas:
+    "list-input task-container"
+    "liste task-container";
+}
+
+/* Container pour la partie tâches & filtres */
+#task-container {
+  max-width: 70%;
+  border-radius: 15px;
+  border-top: 3px solid rgba(19, 87, 107, 0.5);
+  border-bottom: 3px solid rgba(19, 87, 107, 0.5);
+  background-color: rgba(22, 101, 126, 0.5);
+  padding: 30px;
+  display: grid;
+  gap: 1em; /* Équilibrer l'espace entre les zones */
+  grid-template-columns: repeat(4, 1fr); /* 4 colonnes égales */
+  grid-template-rows: auto 1fr;
+  grid-template-areas:
+    "ajout-tache toutes terminé non-terminé"
+    "wrapper-tache wrapper-tache wrapper-tache wrapper-tache";
+}
+
+/* Wrapper pour les tâches seulement */
+#wrapper-task {
+  max-width: 100%;
+  padding-left: 30px;
+  padding-bottom: 20px;
+  border-radius: 10px;
+  background-color: #d9d9d9;
+  grid-area: wrapper-tache;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Input pour les tâches */
+#wrapper-task-input {
+  max-width: 30%;
+  display: flex;
+  flex-direction: row;
+  padding-top: 10px;
+  margin-bottom: 10px;
+  grid-area: ajout-tache;
+}
+
+/* Wrapper pour englober la partie gauche (liste) */
+#wrapper-list {
+  max-width: 80%;
+  grid-area: list-input;
+  border-top: 3px solid rgba(22, 101, 126);
+  border-left: 3px solid rgba(22, 101, 126);
+  border-radius: 10px;
+}
+/* Input pour les listes */
+#wrapper-list-input {
+  padding: 1em;
+  max-width: 30%;
+  display: flex;
+  flex-direction: row;
+}
+
+/* Ul liste */
+#liste {
+  font-family: "Jomhuria", serif;
+  font-size: 3rem;
+  grid-area: liste;
+  max-width: 100%;
+  margin: 1rem;
+  padding: 0;
+}
+
+.select-list.active-list {
+  border: 2px solid black;
+  background-color: #f0f0f0;
+  color: #333;
+  font-weight: bold;
+  border-radius: 18px;
+}
+
+#liste li {
+  font-size: 2.5rem;
+  margin-left: 0.5em;
+  list-style: none;
+}
+
+#task-input,
+#list-input {
+  font-size: 16px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  font-family: "Kaushan Script", serif;
+  box-shadow: 2px 3px 2px rgba(22, 101, 126);
+}
+
+/* ICONS */
+.bouton-plus {
+  width: 30px;
+  height: auto;
+}
+
+.list-icon {
+  width: 30px;
+  height: auto;
+  padding: 0 10px;
+  margin-top: -5px;
+}
+
+.x-mark {
+  width: 23px;
+  height: auto;
+  padding-right: 5px;
+}
+
+.delete-icon {
+  display: flex;
+  width: 18px;
+  padding-right: 1em;
+  padding-top: 0.6em;
+  height: auto;
+}
+#delete-btn {
+  max-width: 20%;
+  display: inline;
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-left: 2em;
+  padding: 0;
+}
+#delete-btn:hover {
+  scale: 1.1;
+}
+
+#close-button {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.select-list {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+#add-task,
+#add-list {
+  padding: 0 20px;
+  font-size: 16px;
+  background: none;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+#filters {
+  max-width: 100%;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-direction: row;
+}
+
+#filter-all {
+  grid-area: toutes;
+  border-radius: 16px;
+  font-family: "Jomhuria", serif;
+  font-size: 2em;
+  padding: 2px 15px;
+  box-shadow: 2px 3px 2px rgba(22, 101, 126);
+}
+#filter-done {
+  grid-area: terminé;
+  border-radius: 16px;
+  font-family: "Jomhuria", serif;
+  font-size: 2em;
+  padding: 2px 15px;
+  box-shadow: 2px 3px 2px rgba(22, 101, 126);
+}
+#filter-not-done {
+  text-wrap: nowrap;
+  grid-area: non-terminé;
+  border-radius: 16px;
+  font-family: "Jomhuria", serif;
+  font-size: 2em;
+  padding: 2px 15px;
+  box-shadow: 2px 3px 2px rgba(22, 101, 126);
+}
+
+.filter {
+  margin: 0 5px;
+  background-color: #f0f0f0;
+  border: none;
+  cursor: pointer;
+}
+
+.filter.active {
+  background-color: rgb(14, 68, 85);
+  color: white;
+}
+
+.task-list {
+  padding: 0;
+}
+
+.task-list li {
+  max-width: 70%;
+  margin: 5px 25px;
+  padding: 5px; /* Ajouter un espacement interne */
+  border: 2px solid #141414; /* Séparateur entre les tâches */
+  border-radius: 18px;
+}
+
+.task-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Bouton supprimer à droite */
+  padding: 10px;
+  border: 2px solid #141414;
+  border-radius: 10px;
+  margin: 5px 0;
+  opacity: 0;
+  transform: translateY(-10px);
+  animation: fadeIn 0.3s forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.task-item.removing {
+  animation: fadeOut 0.3s forwards;
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+
+.task-item input:checked + .checkbox-mark + .task-text {
+  text-decoration: line-through;
+  color: gray;
+  opacity: 0.7;
+}
+.task-item.done {
+  text-decoration: line-through;
+  color: gray;
+  opacity: 0.7;
+}
+
+.task-text {
+  flex: 1; /* Prend tout l’espace disponible */
+  margin-left: 10px; /* Éloigne le texte de la checkbox */
+}
+
+.task-zone {
+  display: none;
+}
+
+.task-zone.hidden {
+  display: none;
+}
+
+.task-zone:not(.hidden) {
+  display: block;
+}
+
+/* Style du conteneur */
+.custom-checkbox {
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px;
+  cursor: pointer;
+}
+
+/* Cache l'input natif */
+.custom-checkbox input {
+  display: none;
+}
+
+/* Style de la "checkbox" personnalisée */
+.custom-checkbox .checkbox-mark {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #007bff;
+  border-radius: 4px;
+  position: relative;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+/* Style de la case cochée */
+.custom-checkbox input:checked + .checkbox-mark {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.custom-checkbox input:checked + .checkbox-mark::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  background-color: white;
+  border-radius: 2px;
+  transform: translate(-50%, -50%);
+}

@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jomhuria&family=Kaushan+Script&display=swap"
+      rel="stylesheet"
+    />
+    <title>To-Do List</title>
+  </head>
+  <body>
+    <h1>TO DO LIST</h1>
+
+    <div id="todo-app">
+      <div id="wrapper-list">
+        <div id="wrapper-list-input">
+          <input type="text" id="list-input" placeholder="Ajouter une liste" />
+          <button id="add-list" type="button">
+            <img
+              class="bouton-plus"
+              src="/SVG icons/plus-solid.svg"
+              alt="forme plus"
+            />
+          </button>
+        </div>
+        <ul id="liste">
+          <img
+            class="list-icon"
+            src="SVG icons/list-solid.svg"
+            alt="list icon"
+          />
+          Liste :
+        </ul>
+      </div>
+
+      <div id="task-container">
+        <div id="wrapper-task-input">
+          <input type="text" id="task-input" placeholder="Ajouter une tâche" />
+          <button id="add-task">
+            <img
+              class="bouton-plus"
+              src="/SVG icons/plus-solid.svg"
+              alt="forme plus"
+            />
+          </button>
+        </div>
+        <div id="filters">
+          <button id="filter-all" class="filter active">Toutes</button>
+          <button id="filter-done" class="filter">Terminées</button>
+          <button id="filter-not-done" class="filter">Non terminées</button>
+        </div>
+        <div id="wrapper-task"></div>
+      </div>
+    </div>
+  </body>
+  <script src="script.js"></script>
+</html>
